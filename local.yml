@@ -2,5 +2,5 @@
   become: true
   tasks:
   - name: Install htop
-    homebreew: name=htop
+    homebrew: name=htop
 

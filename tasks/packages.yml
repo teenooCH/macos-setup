@@ -1,7 +1,11 @@
-- name: Install packages
+- name: Install brew packages
   homebrew: name={{ item }}
   with_items:
     - htop
     - bat
     - tmux
+
+- name: Install brew cask packages
+  homebrew_cask: name={{ item }}
+  with_items:
     - vmware-fusion

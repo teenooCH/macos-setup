@@ -1,11 +1,12 @@
 - hosts: localhost
   become: false
   connection: local
+  pre_tasks:
+    - name: update repositories
+      homebrew:
+        update_homebrew: yes
+      changed_when: false
+
   tasks:
-  - name: Install packages
-    homebrew: name={{ item }}
-    with_items:
-      - htop
-      - bat
-      - tmux
+    - include: tasks/packages.yml
 

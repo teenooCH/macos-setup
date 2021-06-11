@@ -2,12 +2,10 @@
   become: false
   connection: local
   tasks:
-  - name: Install htop
-    homebrew: name=htop
-
-  - name: Install bat
-    homebrew: name=bat
-
-  - name: Install tmux
-    homebrew: name=tmux
+  - name: Install packages
+    homebrew: name={{ item }}
+    with_items:
+      - htop
+      - bat
+      - tmux
 

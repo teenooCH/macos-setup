@@ -1,11 +1,23 @@
 - name: Install brew packages
   homebrew: name={{ item }}
   with_items:
-    - htop
+    - ansible
+    - ansible-lint
     - bat
+    - brotli
+    - gettext
+    - git
+    - go
+    - htop
+    - syncthing
     - tmux
+    - tompgrade
 
 - name: Install brew cask packages
   homebrew_cask: name={{ item }}
   with_items:
-    - vmware-fusion
+    - authy
+    - cyberduck
+    - dash
+    - dropbox
+    - iterm2

@@ -11,7 +11,7 @@
     - htop
     - syncthing
     - tmux
-    - tompgrade
+    - topgrade
 
 - name: Install brew cask packages
   homebrew_cask: name={{ item }}

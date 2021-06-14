@@ -1,4 +1,4 @@
-- name: Install brew packages
+- name: Install base packages
   homebrew: name={{ item }}
   with_items:
     - ansible
@@ -7,17 +7,14 @@
     - brotli
     - gettext
     - git
-    - go
     - htop
     - syncthing
     - tmux
     - topgrade
 
-- name: Install brew cask packages
+- name: Install base cask packages
   homebrew_cask: name={{ item }}
   with_items:
     - authy
     - cyberduck
-    - dash
     - dropbox
-    - iterm2

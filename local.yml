@@ -8,5 +8,7 @@
       changed_when: false
 
   tasks:
-    - include: tasks/packages.yml
+    - include: tasks/base.yml
+    - include: tasks/develop.yml
+      when: develop is defined or all is defined
 

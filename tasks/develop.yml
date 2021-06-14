@@ -1,0 +1,10 @@
+- name: Install development packages
+  homebrew: name={{ item }}
+  with_items:
+    - go
+
+- name: Install development cask packages
+  homebrew_cask: name={{ item }}
+  with_items:
+    - dash
+    - iterm2

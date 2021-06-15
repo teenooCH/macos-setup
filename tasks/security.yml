@@ -1,0 +1,6 @@
+- name: Install security cask packages
+  homebrew_cask: name={{ item }}
+  with_items:
+    - authy
+    - avira-antivirus
+    - lulu

@@ -2,7 +2,6 @@
   homebrew: name={{ item }}
   with_items:
     - ansible
-    - ansible-lint
     - bat
     - brotli
     - gettext
@@ -18,3 +17,5 @@
     - authy
     - cyberduck
     - dropbox
+    - enpass
+    - evernote

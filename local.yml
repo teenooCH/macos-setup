@@ -11,4 +11,9 @@
     - include: tasks/base.yml
     - include: tasks/develop.yml
       when: develop is defined or all is defined
-
+    - include: tasks/office.yml
+      when: office is defined or all is defined
+    - include: tasks/security.yml
+      when: security is defined or all is defined
+    - include: tasks/v12n.yml
+      when: v12n is defined or all is defined

@@ -14,7 +14,6 @@
 - name: Install base cask packages
   homebrew_cask: name={{ item }}
   with_items:
-    - authy
     - cyberduck
     - dropbox
     - enpass

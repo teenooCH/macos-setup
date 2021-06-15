@@ -16,5 +16,5 @@
   with_items:
     - cyberduck
     - dropbox
-    - enpass
-    - evernote
+#    - enpass
+#    - evernote

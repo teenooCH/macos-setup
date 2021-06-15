@@ -1,4 +1,5 @@
-- hosts: localhost
+- hosts: all
+  gather_facts: no
   become: false
   connection: local
   pre_tasks:

@@ -1,0 +1,48 @@
+---
+# Base packages. Always installed
+base_brew_pkgs:
+  - ansible
+  - bat
+  - cowsay
+  - git
+  - htop
+  - mas
+  - syncthing
+  - tmux
+  - topgrade
+base_cask_pkgs:
+  - cyberduck
+  - dropbox
+#  - enpass
+#  - evernote
+
+# Optional packages
+devel_brew_pkgs:
+  - ansible-lint
+  - go
+devel_cask_pkgs:
+  - dash
+  - fork
+  - goland
+  - grandperspective
+  - iterm2
+
+office_brew_pkgs: []
+office_cask_pkgs:
+#  - libreoffice
+  - signal
+#  - telegram
+
+security_brew_pkgs: []
+security_cask_pkgs:
+  - authy
+  - avira-antivirus
+  - lulu
+
+v12n_brew_pkgs:
+  - kubernetes-cli
+v12n_cask_pkgs:
+  - vagrant
+  - virtualbox
+  - virtualbox-extension-pack
+  - vmware-fusion

@@ -1,8 +1,15 @@
 - hosts: all
   gather_facts: no
   become: false
-  connection: local
+  vars_files:
+    - vars.yml
   pre_tasks:
+    - name: set global vars
+      set_fact:
+        all_brew_pkgs: []
+        all_cask_pkgs: []
+      tags: always
+
     - name: update repositories
       tags: always
       homebrew:
@@ -10,20 +17,48 @@
       changed_when: false
 
   tasks:
-    - include: tasks/base.yml
+    - name: add base pkgs
+      set_fact:
+        all_brew_pkgs: "{{ all_brew_pkgs + base_brew_pkgs }}"
+        all_cask_pkgs: "{{ all_cask_pkgs + base_cask_pkgs }}"
       tags: always
 
-    - name: Optional tasks
+    - name: add optional brew packages
       tags: never, full
       block:
-      - include: tasks/develop.yml
-        tags: devl
+      - name: add development pkgs
+        set_fact:
+          all_brew_pkgs: "{{ all_brew_pkgs + devel_brew_pkgs }}"
+          all_cask_pkgs: "{{ all_cask_pkgs + devel_cask_pkgs }}"
+        tags: devel
 
-      - include: tasks/office.yml
+      - name: add office pkgs
+        set_fact:
+          all_brew_pkgs: "{{ all_brew_pkgs + office_brew_pkgs }}"
+          all_cask_pkgs: "{{ all_cask_pkgs + office_cask_pkgs }}"
         tags: office
 
-      - include: tasks/security.yml
+      - name: add security pkgs
+        set_fact:
+          all_brew_pkgs: "{{ all_brew_pkgs + security_brew_pkgs }}"
+          all_cask_pkgs: "{{ all_cask_pkgs + security_cask_pkgs }}"
         tags: security
 
-      - include: tasks/v12n.yml
+      - name: add virtualization pkgs
+        set_fact:
+          all_brew_pkgs: "{{ all_brew_pkgs + v12n_brew_pkgs }}"
+          all_cask_pkgs: "{{ all_cask_pkgs + v12n_cask_pkgs }}"
         tags: v12n
+
+    - name: Install Homebrew packages
+      homebrew:
+        name: "{{ item }}"
+      with_items: "{{ all_brew_pkgs }}"
+      tags: always
+
+    - name: Install Homebrew cask packages
+      homebrew_cask:
+        name: "{{ item }}"
+        accept_external_apps: true
+      with_items: "{{ all_cask_pkgs }}"
+      tags: always

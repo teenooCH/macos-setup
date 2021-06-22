@@ -62,3 +62,16 @@
         accept_external_apps: true
       with_items: "{{ all_cask_pkgs }}"
       tags: always
+
+    - name: Get all installed Apps
+      command: mas list
+      register: installed_apps
+      check_mode: false
+      changed_when: false
+      tags: always
+
+    - name: Ensure configured MAS apps are installed.
+      command: mas install "{{ item.id | default(item) }}"
+      with_items: "{{ mas_installed_apps }}"
+      when: (item.id | default(item) | string) not in installed_apps.stdout
+      tags: always

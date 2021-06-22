@@ -6,7 +6,7 @@ base_brew_pkgs:
   - cowsay
   - git
   - htop
-  - mas
+  - mas           # needed for App Store
   - syncthing
   - tmux
   - topgrade
@@ -44,3 +44,6 @@ v12n_cask_pkgs:
   - virtualbox
   - virtualbox-extension-pack
   - vmware-fusion
+
+mas_installed_apps:
+  - {id: 1497506650, name: "Yubico Authenticator"}

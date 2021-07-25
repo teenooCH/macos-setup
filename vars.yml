@@ -34,7 +34,6 @@ office_cask_pkgs:
 
 security_brew_pkgs: []
 security_cask_pkgs:
-  - avira-antivirus
   - lulu
 
 v12n_brew_pkgs:

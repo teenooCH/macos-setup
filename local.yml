@@ -100,10 +100,3 @@
         dest: "~/.zshrc"
         backup: yes
         mode: "0640"
-
-    - name: Write topgrade.toml
-      template:
-        src: "topgrade.toml.j2"
-        dest: "~/.config/topgrade.toml"
-        backup: yes
-        mode: "0640"

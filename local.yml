@@ -1,5 +1,5 @@
 - hosts: all
-  gather_facts: no
+  gather_facts: yes
   become: false
   vars_files:
     - vars.yml
@@ -75,3 +75,35 @@
       with_items: "{{ mas_installed_apps }}"
       when: (item.id | default(item) | string) not in installed_apps.stdout
       tags: always
+
+    - name: Clone Oh My ZSH repository
+      git:
+        repo: "{{ omz_repository }}"
+        dest: "{{ omz_directory }}"
+        depth: 1
+        update: no
+        version: "master"
+      tags: always
+
+    - name: Clone Powerlevel10k repository
+      git:
+        repo: "{{ p10k_repository }}"
+        dest: "{{ p10k_directory }}"
+        depth: 1
+        update: no
+        version: "master"
+      tags: always
+
+    - name: Write .zshrc
+      template:
+        src: "zshrc.j2"
+        dest: "~/.zshrc"
+        backup: yes
+        mode: "0640"
+
+    - name: Write topgrade.toml
+      template:
+        src: "topgrade.toml.j2"
+        dest: "~/.config/topgrade.toml"
+        backup: yes
+        mode: "0640"

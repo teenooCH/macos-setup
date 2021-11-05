@@ -13,8 +13,8 @@ base_brew_pkgs:
 base_cask_pkgs:
   - cyberduck
   - dropbox
-#  - enpass
-#  - evernote
+  - enpass
+  - evernote
 
 # Optional packages
 devel_brew_pkgs:
@@ -30,7 +30,7 @@ devel_cask_pkgs:
 office_brew_pkgs: []
 office_cask_pkgs:
   - signal
-#  - telegram
+  - telegram
 
 security_brew_pkgs: []
 security_cask_pkgs:
@@ -46,3 +46,17 @@ v12n_cask_pkgs:
 
 mas_installed_apps:
   - {id: 1497506650, name: "Yubico Authenticator"}
+
+# Oh my ZSH
+omz_repository: "https://github.com/ohmyzsh/ohmyzsh.git"
+omz_directory: "~/.oh-my-zsh"
+omz_plugins:
+  - "chucknorris"
+  - "dash"
+  - "git"
+  - "golang"
+  - "sudo"
+
+# Powerlevel 10k theme
+p10k_repository: "https://gitee.com/romkatv/powerlevel10k.git"
+p10k_directory: "{{ omz_directory }}/custom/themes/powerlevel10k"

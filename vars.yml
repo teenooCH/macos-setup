@@ -51,7 +51,6 @@ mas_installed_apps:
 omz_repository: "https://github.com/ohmyzsh/ohmyzsh.git"
 omz_directory: "~/.oh-my-zsh"
 omz_plugins:
-  - "chucknorris"
   - "dash"
   - "git"
   - "golang"

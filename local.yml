@@ -107,3 +107,17 @@
         dest: "~/.tmux.conf"
         backup: yes
         mode: "0640"
+
+    - name: Write .gitconfig
+      template:
+        src: "gitconfig.j2"
+        dest: "~/.gitconfig"
+        backup: yes
+        mode: "0640"
+
+    - name: Write .gitignore
+      template:
+        src: "gitignore.j2"
+        dest: "~/.gitignore"
+        backup: yes
+        mode: "0640"

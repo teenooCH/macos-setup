@@ -3,6 +3,7 @@
 base_brew_pkgs:
   - ansible
   - bat
+  - coreutils
   - cowsay
   - git
   - htop

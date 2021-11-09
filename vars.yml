@@ -60,3 +60,22 @@ omz_plugins:
 # Powerlevel 10k theme
 p10k_repository: "https://gitee.com/romkatv/powerlevel10k.git"
 p10k_directory: "{{ omz_directory }}/custom/themes/powerlevel10k"
+
+# Templates
+configuration_templates:
+  - source: "zshrc.j2"
+    destination: "~/.zshrc"
+    backup: yes
+    mode: "0640"
+  - source: "tmux.conf.j2"
+    destination: "~/.tmux.conf"
+    backup: yes
+    mode: "0640"
+  - source: "gitconfig.j2"
+    destination: "~/.gitconfig"
+    backup: yes
+    mode: "0640"
+  - source: "gitignore.j2"
+    destination: "~/.gitignore"
+    backup: no
+    mode: "0640"

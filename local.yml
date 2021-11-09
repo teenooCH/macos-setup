@@ -94,30 +94,11 @@
         version: "master"
       tags: always
 
-    - name: Write .zshrc
+    - name: Write configuration files
       template:
-        src: "zshrc.j2"
-        dest: "~/.zshrc"
-        backup: yes
-        mode: "0640"
-
-    - name: Write .tmux.conf
-      template:
-        src: "tmux.conf.j2"
-        dest: "~/.tmux.conf"
-        backup: yes
-        mode: "0640"
-
-    - name: Write .gitconfig
-      template:
-        src: "gitconfig.j2"
-        dest: "~/.gitconfig"
-        backup: yes
-        mode: "0640"
-
-    - name: Write .gitignore
-      template:
-        src: "gitignore.j2"
-        dest: "~/.gitignore"
-        backup: yes
-        mode: "0640"
+        src: "{{ item.source }}"
+        dest: "{{ item.destination }}"
+        backup: "{{ item.backup }}"
+        mode: "{{ item.mode }}"
+      with_items: "{{ configuration_templates }}"
+      tags: always

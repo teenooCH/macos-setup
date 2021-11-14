@@ -26,7 +26,7 @@
     - name: add base pkgs
       set_fact:
         all_brew_pkgs: "{{ all_brew_pkgs + base_brew_pkgs }}"
-        all_cask_pkgs: "{{ all_cask_pkgs + base_cask_pkgs }}"
+        all_cask_pkgs: "{{ all_cask_pkgs + base_cask_pkgs + brew_fonts }}"
       tags: always
 
     - name: add optional brew packages

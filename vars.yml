@@ -4,6 +4,10 @@ brew_taps:
   - homebrew/cask-drivers
   - homebrew/cask-fonts
 
+#Brew fonts
+brew_fonts:
+  - font-meslo-lg-nerd-font
+
 # Base packages. Always installed
 base_brew_pkgs:
   - ansible

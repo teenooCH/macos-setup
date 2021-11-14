@@ -1,4 +1,9 @@
 ---
+# Brew taps
+brew_taps:
+  - homebrew/cask-drivers
+  - homebrew/cask-fonts
+
 # Base packages. Always installed
 base_brew_pkgs:
   - ansible
@@ -45,6 +50,11 @@ v12n_cask_pkgs:
   - virtualbox-extension-pack
   - vmware-fusion
 
+navi_brew_pkgs: []
+navi_cask_pkgs:
+  - garmin-express
+  - garmin-basecamp
+
 mas_installed_apps:
   - {id: 1497506650, name: "Yubico Authenticator"}
 
@@ -79,3 +89,4 @@ configuration_templates:
     destination: "~/.gitignore"
     backup: no
     mode: "0640"
+

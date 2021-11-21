@@ -50,8 +50,6 @@ v12n_brew_pkgs:
   - kubernetes-cli
 v12n_cask_pkgs:
   - vagrant
-  - virtualbox
-  - virtualbox-extension-pack
   - vmware-fusion
 
 navi_brew_pkgs: []

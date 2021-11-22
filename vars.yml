@@ -30,6 +30,7 @@ base_cask_pkgs:
 devel_brew_pkgs:
   - ansible-lint
   - go
+  - golangci-lint
 devel_cask_pkgs:
   - dash
   - fork

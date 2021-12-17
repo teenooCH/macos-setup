@@ -61,6 +61,7 @@ navi_cask_pkgs:
 
 mas_installed_apps:
   - {id: 1497506650, name: "Yubico Authenticator"}
+  - {id: 1507782672, name: "Pixea"}
 
 # Oh my ZSH
 omz_repository: "https://github.com/ohmyzsh/ohmyzsh.git"

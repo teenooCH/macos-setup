@@ -106,11 +106,20 @@
         version: "master"
       tags: always
 
-    - name: Write configuration files
+    - name: Create configuration files from templates
       template:
         src: "{{ item.source }}"
         dest: "{{ item.destination }}"
         backup: "{{ item.backup }}"
         mode: "{{ item.mode }}"
       with_items: "{{ configuration_templates }}"
+      tags: always
+
+    - name: Copy configuration files
+      copy:
+        src: "{{ item.source }}"
+        dest: "{{ item.destination }}"
+        backup: "{{ item.backup }}"
+        mode: "{{ item.mode }}"
+      with_items: "{{ configuration_files }}"
       tags: always

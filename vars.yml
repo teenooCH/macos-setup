@@ -38,6 +38,7 @@ devel_cask_pkgs:
   - goland
   - grandperspective
   - iterm2
+  - kitty
 
 office_brew_pkgs: []
 office_cask_pkgs:
@@ -93,5 +94,12 @@ configuration_templates:
   - source: "gitignore.j2"
     destination: "~/.gitignore"
     backup: no
+    mode: "0640"
+
+# Files to copy
+configuration_files:
+  - source: "files/kitty.conf"
+    destination: "~/.config/kitty/"
+    backup: yes
     mode: "0640"
 

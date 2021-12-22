@@ -95,6 +95,10 @@ configuration_templates:
     destination: "~/.gitignore"
     backup: no
     mode: "0640"
+  - source: "vimrc.j2"
+    destination: "~/.vimrc"
+    backup: no
+    mode: "0640"
 
 # Files to copy
 configuration_files:

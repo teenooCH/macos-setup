@@ -17,7 +17,7 @@ base_brew_pkgs:
   - git
   - htop
   - mas           # needed for App Store
-  - syncthing
+#  - syncthing
   - tmux
   - topgrade
 base_cask_pkgs:

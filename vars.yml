@@ -20,6 +20,7 @@ base_brew_pkgs:
 #  - syncthing
   - topgrade
 base_cask_pkgs:
+  - brave-browser
   - commander-one
   - cyberduck
   - dropbox

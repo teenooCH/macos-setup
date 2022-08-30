@@ -4,7 +4,7 @@ brew_taps:
   - homebrew/cask-drivers
   - homebrew/cask-fonts
 
-#Brew fonts
+# Brew fonts
 brew_fonts:
   - font-meslo-lg-nerd-font
 
@@ -82,25 +82,24 @@ p10k_directory: "{{ omz_directory }}/custom/themes/powerlevel10k"
 configuration_templates:
   - source: "zshrc.j2"
     destination: "~/.zshrc"
-    backup: yes
+    backup: true
     mode: "0640"
   - source: "gitconfig.j2"
     destination: "~/.gitconfig"
-    backup: yes
+    backup: true
     mode: "0640"
   - source: "gitignore.j2"
     destination: "~/.gitignore"
-    backup: no
+    backup: false
     mode: "0640"
   - source: "vimrc.j2"
     destination: "~/.vimrc"
-    backup: no
+    backup: false
     mode: "0640"
 
 # Files to copy
 configuration_files:
   - source: "files/kitty.conf"
     destination: "~/.config/kitty/"
-    backup: yes
+    backup: true
     mode: "0640"
-

@@ -1,3 +1,4 @@
+---
 - name: MacOS configuration
   hosts: all
   gather_facts: true

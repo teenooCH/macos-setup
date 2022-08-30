@@ -9,7 +9,7 @@ brew_fonts:
   - font-meslo-lg-nerd-font
 
 # Base packages. Always installed
-base_brew_pkgs:
+base_formulae:
   - ansible
   - bat
   - coreutils
@@ -19,7 +19,7 @@ base_brew_pkgs:
   - mas           # needed for App Store
 #  - syncthing
   - topgrade
-base_cask_pkgs:
+base_casks:
   - brave-browser
   - commander-one
   - cyberduck
@@ -27,35 +27,35 @@ base_cask_pkgs:
   - enpass
 
 # Optional packages
-devel_brew_pkgs:
+devel_formulae:
   - ansible-lint
   - go
   - golangci-lint
-devel_cask_pkgs:
+devel_casks:
   - dash
   - fork
   - goland
   - grandperspective
   - kitty
 
-office_brew_pkgs: []
-office_cask_pkgs:
+office_formulae: []
+office_casks:
   - signal
   - telegram
 
-security_brew_pkgs: []
-security_cask_pkgs:
+security_formulae: []
+security_casks:
   - knockknock
   - lulu
 
-v12n_brew_pkgs:
+v12n_formulae:
   - kubernetes-cli
-v12n_cask_pkgs:
+v12n_casks:
   - vagrant
   - vmware-fusion
 
-navi_brew_pkgs: []
-navi_cask_pkgs:
+navi_formulae: []
+navi_casks:
   - garmin-express
   - garmin-basecamp
 

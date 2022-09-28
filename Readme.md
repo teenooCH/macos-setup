@@ -14,7 +14,7 @@
 
 ## Apply Base configuration
 ```
-ansible-playbook [-i 10.11.12.13 -u user] local.yml
+ansible-playbook [-i 10.11.12.13 -u user] macos.yml
 ```
 Add more packages by selecting one or more of following tags
 

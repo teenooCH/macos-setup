@@ -13,7 +13,6 @@ base_formulae:
   - bat
   - coreutils
   - htop
-  - mas           # needed for App Store
   - topgrade
 base_casks: []
 

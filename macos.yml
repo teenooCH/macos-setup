@@ -18,6 +18,11 @@
     - name: Add optional brew formulae
       tags: never, full
       block:
+        - name: Add mas formulae
+          ansible.builtin.set_fact:
+            formulae_to_install: "{{ formulae_to_install + ['mas'] }}"
+          tags: mas
+
         - name: Add development formulae and casks
           ansible.builtin.set_fact:
             formulae_to_install: "{{ formulae_to_install + devel_formulae }}"
@@ -106,7 +111,7 @@
       register: installed_apps
       check_mode: false
       changed_when: false
-      tags: always
+      tags: mas, never, full
 
     - name: Ensure MAS apps are present
       ansible.builtin.command:

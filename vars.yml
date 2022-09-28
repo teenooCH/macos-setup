@@ -12,8 +12,6 @@ brew_fonts:
 base_formulae:
   - bat
   - coreutils
-  - cowsay
-  - git
   - htop
   - mas           # needed for App Store
   - topgrade
@@ -23,6 +21,8 @@ base_casks: []
 devel_formulae:
   - ansible
   - ansible-lint
+  - cowsay
+  - git
   - go
   - golangci-lint
 devel_casks:

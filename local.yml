@@ -5,6 +5,9 @@
   become: false
   vars_files:
     - vars.yml
+  vars:
+    brew_bin_path: "{{ '/opt/homebrew/bin' if ansible_facts['machine'] == 'arm64' else '/usr/local/Homebrew/bin' }}"
+
   pre_tasks:
     - name: Set base formulae
       ansible.builtin.set_fact:
@@ -45,14 +48,33 @@
             casks_to_install: "{{ casks_to_install + navi_casks }}"
           tags: navigation
 
-    - name: Get all installed MAS Apps
-      ansible.builtin.command: mas list
-      register: installed_apps
+  tasks:
+    - name: Determine if homebrew is installed
+      ansible.builtin.command:
+        cmd: "{{ brew_bin_path }}/brew --version"
+      register: validate_brew
       check_mode: false
       changed_when: false
-      tags: always
+      failed_when: validate_brew.rc != 0 and validate_brew.rc != 2
 
-  tasks:
+    - name: Ensure homebrew is installed
+      ansible.builtin.shell:
+        cmd: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      become: false
+      when: validate_brew.rc != 0
+
+    - name: Get list of all installed Mac OS X Installer packages
+      ansible.builtin.command:
+        cmd: pkgutil --pkgs
+      register: installed_pkgs
+      check_mode: false
+      changed_when: false
+
+    - name: Ensure Rosetta 2 is installed
+      ansible.builtin.command:
+        cmd: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+      when: '"com.apple.pkg.RosettaUpdateAuto" not in installed_pkgs.stdout'
+
     - name: Update Homebrew repositories
       community.general.homebrew:
         update_homebrew: true
@@ -78,11 +100,20 @@
       with_items: "{{ casks_to_install }}"
       tags: always
 
+    - name: Get list of all installed MAS Apps
+      ansible.builtin.command:
+        cmd: "{{ brew_bin_path }}/mas list"
+      register: installed_apps
+      check_mode: false
+      changed_when: false
+      tags: always
+
     - name: Ensure MAS apps are present
-      ansible.builtin.command: mas install "{{ item.id | default(item) }}"
+      ansible.builtin.command:
+        cmd: "{{ brew_bin_path }}/mas install {{ item.id | default(item) }}"
       with_items: "{{ mas_installed_apps }}"
       when: (item.id | default(item) | string) not in installed_apps.stdout
-      tags: always
+      tags: mas, never, full
 
     - name: Clone Oh My ZSH repository
       ansible.builtin.git:

@@ -10,28 +10,24 @@ brew_fonts:
 
 # Base packages. Always installed
 base_formulae:
-  - ansible
   - bat
   - coreutils
   - cowsay
   - git
   - htop
   - mas           # needed for App Store
-#  - syncthing
   - topgrade
-base_casks:
-  - brave-browser
-  - commander-one
-  - cyberduck
-  - dropbox
-  - enpass
+base_casks: []
 
 # Optional packages
 devel_formulae:
+  - ansible
   - ansible-lint
   - go
   - golangci-lint
 devel_casks:
+  - commander-one
+  - cyberduck
   - dash
   - fork
   - goland
@@ -40,11 +36,14 @@ devel_casks:
 
 office_formulae: []
 office_casks:
+  - brave-browser
+  #  - dropbox
   - signal
   - telegram
 
 security_formulae: []
 security_casks:
+  - enpass
   - knockknock
   - lulu
 
@@ -53,6 +52,7 @@ v12n_formulae:
 v12n_casks:
   - vagrant
   - vmware-fusion
+  - utm
 
 navi_formulae: []
 navi_casks:
@@ -82,6 +82,10 @@ p10k_directory: "{{ omz_directory }}/custom/themes/powerlevel10k"
 configuration_templates:
   - source: "zshrc.j2"
     destination: "~/.zshrc"
+    backup: true
+    mode: "0640"
+  - source: "zprofile.j2"
+    destination: "~/.zprofile"
     backup: true
     mode: "0640"
   - source: "gitconfig.j2"

@@ -68,7 +68,7 @@
       when: "ansible_facts['machine'] == 'arm64'"
       tags: always
 
-    - name: Update Homebrew repositories
+    - name: Ensure Homebrew repositories are updated
       community.general.homebrew:
         update_homebrew: true
       changed_when: false
@@ -108,7 +108,7 @@
       when: (item.id | default(item) | string) not in installed_apps.stdout
       tags: mas, never, full
 
-    - name: Clone Oh My ZSH repository
+    - name: Ensure Oh My ZSH repository is present
       ansible.builtin.git:
         repo: "{{ omz_repository }}"
         dest: "{{ omz_directory }}"
@@ -117,7 +117,7 @@
         version: "master"
       tags: always
 
-    - name: Clone Powerlevel10k repository
+    - name: Ensure Powerlevel10k repository is presenttory
       ansible.builtin.git:
         repo: "{{ p10k_repository }}"
         dest: "{{ p10k_directory }}"

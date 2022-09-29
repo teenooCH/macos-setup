@@ -54,31 +54,19 @@
           tags: navigation
 
   tasks:
-    - name: Determine if homebrew is installed
-      ansible.builtin.command:
-        cmd: "{{ brew_bin_path }}/brew --version"
-      register: validate_brew
-      check_mode: false
-      changed_when: false
-      failed_when: validate_brew.rc != 0 and validate_brew.rc != 2
-
     - name: Ensure homebrew is installed
       ansible.builtin.shell:
         cmd: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        creates: "{{ brew_bin_path }}/brew"
       become: false
-      when: validate_brew.rc != 0
-
-    - name: Get list of all installed Mac OS X Installer packages
-      ansible.builtin.command:
-        cmd: pkgutil --pkgs
-      register: installed_pkgs
-      check_mode: false
-      changed_when: false
+      tags: always
 
     - name: Ensure Rosetta 2 is installed
       ansible.builtin.command:
         cmd: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
-      when: '"com.apple.pkg.RosettaUpdateAuto" not in installed_pkgs.stdout'
+        creates: /Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.plist
+      when: "ansible_facts['machine'] == 'arm64'"
+      tags: always
 
     - name: Update Homebrew repositories
       community.general.homebrew:

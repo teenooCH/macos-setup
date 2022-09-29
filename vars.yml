@@ -106,3 +106,7 @@ configuration_files:
     destination: "~/.config/kitty/"
     backup: true
     mode: "0640"
+  - source: "files/p10k.zsh"
+    destination: "~/.p10k.zsh"
+    backup: true
+    mode: "0640"

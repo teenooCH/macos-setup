@@ -104,8 +104,10 @@
     - name: Ensure MAS apps are present
       ansible.builtin.command:
         cmd: "{{ brew_bin_path }}/mas install {{ item.id | default(item) }}"
+      register: mas_result
       with_items: "{{ mas_installed_apps }}"
       when: (item.id | default(item) | string) not in installed_apps.stdout
+      changed_when: "mas_result.rc == 0"
       tags: mas, never, full
 
     - name: Ensure Oh My ZSH repository is present

@@ -49,7 +49,6 @@ security_casks:
 v12n_formulae:
   - kubernetes-cli
 v12n_casks:
-  - vagrant
   - vmware-fusion
   - utm
 

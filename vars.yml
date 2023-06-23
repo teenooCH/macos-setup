@@ -24,6 +24,7 @@ devel_formulae:
   - git
   - go
   - golangci-lint
+  - qrencode
 devel_casks:
   - commander-one
   - cyberduck

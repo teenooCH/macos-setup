@@ -2,13 +2,15 @@
 
 ## Prerequisite
 
-1. Enable ssh on new system  
-   System Preferences -> Sharing -> Remote Login
-2. Copy ssh pub key to new system  
+1. Enable ssh on the remote system  
+   System Preferences -> Sharing -> Remote Login  
+   or  
+   ```sudo systemsetup -setremote on```
+2. Copy ssh pub key to the remote system  
    ``ssh-copy-id user@10.11.12.13``
-3. Install Developer Tools (Python3) on new system  
+3. Install Developer Tools (Python3) on the remote system  
    ``xcode-select --install``
-4. Make sure no password is needed on new system  
+4. Make sure no password is needed on the remote system  
    Add _NOPASSWD:_ to the user or group with ``visudo``  
    > This is only necessary for the installation of homebrew 
    > and can be removed after the very first run during which

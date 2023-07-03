@@ -19,6 +19,8 @@
 ```
 ansible-playbook [-i 10.11.12.13, [-u user]] macos.yml
 ```
+> Mind the comma ',' after the IP address.
+
 Add more packages by selecting one or more of following tags
 
 | tag        | description               |

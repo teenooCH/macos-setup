@@ -1,7 +1,6 @@
 ---
 # Brew taps
 brew_taps:
-  - homebrew/cask-drivers
   - homebrew/cask-fonts
 
 # Brew fonts
@@ -37,7 +36,6 @@ devel_casks:
 office_formulae: []
 office_casks:
   - brave-browser
-  #  - dropbox
   - signal
   - telegram
 

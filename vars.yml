@@ -21,6 +21,7 @@ devel_formulae:
   - ansible-lint
   - cowsay
   - git
+  - glow
   - go
   - golangci-lint
   - qrencode
@@ -35,6 +36,7 @@ devel_casks:
 
 office_formulae: []
 office_casks:
+  - battery
   - brave-browser
   - signal
   - telegram
@@ -58,6 +60,8 @@ navi_casks:
 
 mas_installed_apps:
   - {id: 1091189122, name: "Bear"}
+  - {id: 1055511498, name: "Day One"}
+  - {id: 634892482, name: "MoneyControl"}
   - {id: 1507782672, name: "Pixea"}
   - {id: 1451685025, name: "WireGuard"}
   - {id: 1497506650, name: "Yubico Authenticator"}

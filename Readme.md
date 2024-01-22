@@ -10,18 +10,16 @@
    ``ssh-copy-id user@10.11.12.13``
 3. Install Developer Tools (Python3) on the remote system  
    ``xcode-select --install``
-4. Make sure no password is needed on the remote system  
-   Add _NOPASSWD:_ to the user or group with ``visudo``  
-   > This is only necessary for the installation of homebrew 
-   > and can be removed after the very first run during which
-   > homebrew will be installed
 
 ## Apply Base configuration
 
 ```
-ansible-playbook [-i 10.11.12.13, [-u user]] macos.yml
+ansible-playbook [-i 10.11.12.13, [-u user]] macos.yml [--ask-become-pass]
 ```
 > Mind the comma ',' after the IP address.
+
+> The ``--ak-become-pass`` is only necessary for the installation 
+> of homebrew at the very first run.
 
 Add more packages by selecting one or more of following tags
 

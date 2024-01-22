@@ -3,7 +3,7 @@
 ## Prerequisite
 
 1. Enable ssh on the remote system  
-   System Preferences -> Sharing -> Remote Login  
+   System Preferences -> General -> Sharing -> Remote Login  
    or  
    ```sudo systemsetup -setremotelogin on```
 2. Copy ssh pub key to the remote system  

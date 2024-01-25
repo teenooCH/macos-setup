@@ -1,0 +1,37 @@
+---
+- name: Check if Homebrew binary is installed
+  ansible.builtin.stat:
+    path: "{{ homebrew_binary_path }}/brew"
+  register: homebrew_binary
+  changed_when: false
+
+- name: Ensure Homebrew is installed
+  ansible.builtin.include_tasks:
+    file: install.yml
+  when: not homebrew_binary.stat.exists
+
+- name: Ensure Homebrew repositories are up to date
+  community.general.homebrew:
+    update_homebrew: true
+  changed_when: false
+
+- name: Ensure extra Homebrew Taps are present
+  community.general.homebrew_tap:
+    name: "{{ item }}"
+  with_items: "{{ homebrew_taps }}"
+
+- name: Ensure Fonts are present
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+  with_items: "{{ homebrew_fonts }}"
+
+- name: Ensure Homebrew Formulae are present
+  community.general.homebrew:
+    name: "{{ item }}"
+  with_items: "{{ homebrew_formulae }}"
+
+- name: Ensure Homebrew Casks are present
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    accept_external_apps: true
+  with_items: "{{ homebrew_casks }}"

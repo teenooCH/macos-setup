@@ -5,10 +5,15 @@
 1. Enable ssh on the remote system  
    System Preferences -> General -> Sharing -> Remote Login  
    or  
-   ```sudo systemsetup -setremotelogin on```
+
+   ``sudo systemsetup -setremotelogin on``
+
 2. Copy ssh pub key to the remote system  
+
    ``ssh-copy-id user@10.11.12.13``
+
 3. Install Developer Tools (Python3) on the remote system  
+
    ``xcode-select --install``
 
 ## Apply Base configuration
@@ -16,6 +21,7 @@
 ```
 ansible-playbook [-i 10.11.12.13, [-u user]] macos.yml [--ask-become-pass]
 ```
+
 > Mind the comma ',' after the IP address.
 
 > The ``--ask-become-pass`` is only necessary for the installation 

@@ -1,0 +1,16 @@
+---
+- name: Base configuration
+  hosts: all
+
+  roles:
+    - role: homebrew
+      vars:
+        homebrew_taps:
+          - homebrew/cask-fonts
+        homebrew_fonts:
+          - font-meslo-lg-nerd-font
+        homebrew_formulae:
+          - bat
+          - coreutils
+        homebrew_casks:
+          - fork

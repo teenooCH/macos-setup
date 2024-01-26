@@ -1,0 +1,6 @@
+---
+- name: Ensure Rosetta 2 is installed
+  ansible.builtin.command:
+    cmd: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+    creates: /Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.plist
+  when: "ansible_facts['machine'] == 'arm64'"

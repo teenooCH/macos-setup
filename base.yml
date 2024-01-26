@@ -3,6 +3,7 @@
   hosts: all
 
   roles:
+    - macos_components
     - role: homebrew
       vars:
         homebrew_upgrade_packages: true

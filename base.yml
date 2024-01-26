@@ -11,6 +11,8 @@
           - font-meslo-lg-nerd-font
         homebrew_formulae:
           - bat
-          - coreutils
+          - name: coreutils
+            state: absent
+          - htop
         homebrew_casks:
           - fork

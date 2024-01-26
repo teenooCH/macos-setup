@@ -10,7 +10,7 @@
 
 - name: Install Homebrew
   ansible.builtin.shell:
-    cmd: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL {{homebrew_install_script}})"
+    cmd: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL {{ homebrew_install_script }})"
     creates: "{{ homebrew_binary_path }}/brew"
   become: false
 

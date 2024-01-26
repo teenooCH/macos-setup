@@ -22,29 +22,29 @@
 
 - name: Ensure extra Homebrew Taps are present/absent
   community.general.homebrew_tap:
-    name: "{{ item.name|default(item) }}"
-    state: "{{ item.state|default('present') }}"
-    url: "{{ item.url|default(omit) }}"
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+    url: "{{ item.url | default(omit) }}"
   with_items: "{{ homebrew_taps }}"
 
 - name: Ensure Fonts are present/absent
   community.general.homebrew_cask:
-    name: "{{ item.name|default(item) }}"
-    state: "{{ item.state|default('present') }}"
-    options: "{{ item.options|default(omit) }}"
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+    options: "{{ item.options | default(omit) }}"
   with_items: "{{ homebrew_fonts }}"
 
 - name: Ensure Homebrew Formulae are present/absent
   community.general.homebrew:
-    name: "{{ item.name|default(item) }}"
-    state: "{{ item.state|default('present') }}"
-    options: "{{ item.options|default(omit) }}"
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+    options: "{{ item.options | default(omit) }}"
   with_items: "{{ homebrew_formulae }}"
 
 - name: Ensure Homebrew Casks are present/absent
   community.general.homebrew_cask:
-    name: "{{ item.name|default(item) }}"
-    state: "{{ item.state|default('present') }}"
-    options: "{{ item.options|default(omit) }}"
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+    options: "{{ item.options | default(omit) }}"
     accept_external_apps: true
   with_items: "{{ homebrew_casks }}"

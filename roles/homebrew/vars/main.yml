@@ -1,4 +1,5 @@
 ---
+homebrew_upgrade_packages: false
 homebrew_taps: []
 homebrew_fonts: []
 homebrew_formulae: []

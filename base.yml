@@ -5,6 +5,7 @@
   roles:
     - role: homebrew
       vars:
+        homebrew_upgrade_packages: true
         homebrew_taps:
           - homebrew/cask-fonts
         homebrew_fonts:

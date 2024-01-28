@@ -1,10 +1,8 @@
 ---
 - name: MacOS configuration
   hosts: all
-  gather_facts: true
-  become: false
   vars_files:
-    - vars.yml
+    - vars/main.yml
   vars:
     brew_bin_path: "{{ '/opt/homebrew/bin' if ansible_facts['machine'] == 'arm64' else '/usr/local/Homebrew/bin' }}"
 
@@ -12,7 +10,7 @@
     - name: Set base formulae
       ansible.builtin.set_fact:
         formulae_to_install: "{{ base_formulae }}"
-        casks_to_install: "{{ base_casks + brew_fonts }}"
+        casks_to_install: "{{ base_casks }}"
       tags: always
 
     - name: Add optional brew formulae
@@ -53,46 +51,17 @@
             casks_to_install: "{{ casks_to_install + navi_casks }}"
           tags: navigation
 
+  roles:
+    - macos_components
+    - role: homebrew
+      vars:
+        homebrew_upgrade_packages: true
+        homebrew_taps: "{{ brew_taps }}"
+        homebrew_fonts: "{{ brew_fonts }}"
+        homebrew_formulae: "{{ formulae_to_install }}"
+        homebrew_casks: "{{ casks_to_install }}"
+
   tasks:
-    - name: Ensure homebrew is installed
-      ansible.builtin.shell:
-        cmd: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        creates: "{{ brew_bin_path }}/brew"
-      become: false
-      tags: always
-
-    - name: Ensure Rosetta 2 is installed
-      ansible.builtin.command:
-        cmd: /usr/sbin/softwareupdate --install-rosetta --agree-to-license
-        creates: /Library/Apple/System/Library/Receipts/com.apple.pkg.RosettaUpdateAuto.plist
-      when: "ansible_facts['machine'] == 'arm64'"
-      tags: always
-
-    - name: Ensure Homebrew repositories are updated
-      community.general.homebrew:
-        update_homebrew: true
-      changed_when: false
-      tags: always
-
-    - name: Ensure extra Homebrew Taps are present
-      community.general.homebrew_tap:
-        name: "{{ item }}"
-      with_items: "{{ brew_taps }}"
-      tags: always
-
-    - name: Ensure Homebrew Formulae are present
-      community.general.homebrew:
-        name: "{{ item }}"
-      with_items: "{{ formulae_to_install }}"
-      tags: always
-
-    - name: Ensure Homebrew Casks are present
-      community.general.homebrew_cask:
-        name: "{{ item }}"
-        accept_external_apps: true
-      with_items: "{{ casks_to_install }}"
-      tags: always
-
     - name: Get list of all installed MAS Apps
       ansible.builtin.command:
         cmd: "{{ brew_bin_path }}/mas list"
@@ -119,7 +88,7 @@
         version: "master"
       tags: always
 
-    - name: Ensure Powerlevel10k repository is presenttory
+    - name: Ensure Powerlevel10k repository is present
       ansible.builtin.git:
         repo: "{{ p10k_repository }}"
         dest: "{{ p10k_directory }}"

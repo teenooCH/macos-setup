@@ -52,7 +52,8 @@
           tags: navigation
 
   roles:
-    - macos_components
+    - name: macos_components
+      tags: always
     - role: homebrew
       vars:
         homebrew_upgrade_packages: true
@@ -60,6 +61,7 @@
         homebrew_fonts: "{{ brew_fonts }}"
         homebrew_formulae: "{{ formulae_to_install }}"
         homebrew_casks: "{{ casks_to_install }}"
+      tags: always
 
   tasks:
     - name: Get list of all installed MAS Apps

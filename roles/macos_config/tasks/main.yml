@@ -1,0 +1,16 @@
+---
+- name: Ensure configuration files (templates) are present
+  ansible.builtin.template:
+    src: "{{ item.source }}"
+    dest: "{{ item.destination }}"
+    backup: "{{ item.backup | default(omit) }}"
+    mode: "{{ item.mode | default('0640') }}"
+  with_items: "{{ macos_config_templates }}"
+
+- name: Ensure configuration files are present
+  ansible.builtin.copy:
+    src: "{{ item.source }}"
+    dest: "{{ item.destination }}"
+    backup: "{{ item.backup | default(omit) }}"
+    mode: "{{ item.mode | default('0640') }}"
+  with_items: "{{ macos_config_files }}"

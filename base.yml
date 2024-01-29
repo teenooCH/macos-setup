@@ -29,3 +29,20 @@
             destination: "~/.oh-my-zsh/custom/themes/powerlevel10k"
             update: false
             version: "master"
+    - role: macos_config
+      vars:
+        macos_config_templates:
+          - source: "gitconfig.j2"
+            destination: "~/.gitconfig"
+            backup: true
+          - source: "gitignore.j2"
+            destination: "~/.gitignore"
+          - source: "vimrc.j2"
+            destination: "~/.vimrc"
+        macos_config_files:
+          - source: "files/kitty.conf"
+            destination: "~/.config/kitty/"
+            backup: true
+          - source: "files/p10k.zsh"
+            destination: "~/.p10k.zsh"
+            backup: true

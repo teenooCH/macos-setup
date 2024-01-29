@@ -33,6 +33,7 @@ devel_casks:
   - goland
   - grandperspective
   - kitty
+  - warp
 
 office_formulae: []
 office_casks:

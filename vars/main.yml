@@ -80,7 +80,7 @@ p10k_repository: "https://gitee.com/romkatv/powerlevel10k.git"
 p10k_directory: "{{ omz_directory }}/custom/themes/powerlevel10k"
 
 # Templates
-configuration_templates:
+macos_config_templates:
   - source: "zshrc.j2"
     destination: "~/.zshrc"
     backup: true
@@ -103,7 +103,7 @@ configuration_templates:
     mode: "0640"
 
 # Files to copy
-configuration_files:
+macos_config_files:
   - source: "files/kitty.conf"
     destination: "~/.config/kitty/"
     backup: true

@@ -54,6 +54,7 @@
   roles:
     - role: macos_components
       tags: always
+
     - role: homebrew
       vars:
         homebrew_taps: "{{ brew_taps }}"
@@ -61,6 +62,7 @@
         homebrew_formulae: "{{ formulae_to_install }}"
         homebrew_casks: "{{ casks_to_install }}"
       tags: always
+
     - role: git_repositories
       vars:
         git_repositories_repos:
@@ -72,6 +74,9 @@
             destination: "{{ p10k_directory }}"
             update: false
             version: "master"
+      tags: always
+
+    - role: macos_config
       tags: always
 
   tasks:
@@ -91,21 +96,3 @@
       when: (item.id | default(item) | string) not in installed_apps.stdout
       changed_when: "mas_result.rc == 0"
       tags: mas, never, full
-
-    - name: Ensure configuration files are present
-      ansible.builtin.template:
-        src: "{{ item.source }}"
-        dest: "{{ item.destination }}"
-        backup: "{{ item.backup }}"
-        mode: "{{ item.mode }}"
-      with_items: "{{ configuration_templates }}"
-      tags: always
-
-    - name: Ensure configuration files are present
-      ansible.builtin.copy:
-        src: "{{ item.source }}"
-        dest: "{{ item.destination }}"
-        backup: "{{ item.backup }}"
-        mode: "{{ item.mode }}"
-      with_items: "{{ configuration_files }}"
-      tags: always

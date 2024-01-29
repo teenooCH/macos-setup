@@ -56,11 +56,22 @@
       tags: always
     - role: homebrew
       vars:
-        homebrew_upgrade_packages: true
         homebrew_taps: "{{ brew_taps }}"
         homebrew_fonts: "{{ brew_fonts }}"
         homebrew_formulae: "{{ formulae_to_install }}"
         homebrew_casks: "{{ casks_to_install }}"
+      tags: always
+    - role: git_repositories
+      vars:
+        git_repositories:
+          - repository: "{{ omz_repository }}"
+            destination: "{{ omz_directory }}"
+            update: false
+            version: "master"
+          - repository: "{{ p10k_repository }}"
+            destination: "{{ p10k_directory }}"
+            update: false
+            version: "master"
       tags: always
 
   tasks:
@@ -80,24 +91,6 @@
       when: (item.id | default(item) | string) not in installed_apps.stdout
       changed_when: "mas_result.rc == 0"
       tags: mas, never, full
-
-    - name: Ensure Oh My ZSH repository is present
-      ansible.builtin.git:
-        repo: "{{ omz_repository }}"
-        dest: "{{ omz_directory }}"
-        depth: 1
-        update: false
-        version: "master"
-      tags: always
-
-    - name: Ensure Powerlevel10k repository is present
-      ansible.builtin.git:
-        repo: "{{ p10k_repository }}"
-        dest: "{{ p10k_directory }}"
-        depth: 1
-        update: false
-        version: "master"
-      tags: always
 
     - name: Ensure configuration files are present
       ansible.builtin.template:

@@ -7,48 +7,42 @@
     brew_bin_path: "{{ '/opt/homebrew/bin' if ansible_facts['machine'] == 'arm64' else '/usr/local/Homebrew/bin' }}"
 
   pre_tasks:
-    - name: Set base formulae
-      ansible.builtin.set_fact:
-        formulae_to_install: "{{ base_formulae }}"
-        casks_to_install: "{{ base_casks }}"
-      tags: always
-
     - name: Add optional brew formulae
       tags: never, full
       block:
         - name: Add mas formulae
           ansible.builtin.set_fact:
-            formulae_to_install: "{{ formulae_to_install + ['mas'] }}"
+            homebrew_formulae: "{{ homebrew_formulae + ['mas'] }}"
           tags: mas
 
         - name: Add development formulae and casks
           ansible.builtin.set_fact:
-            formulae_to_install: "{{ formulae_to_install + devel_formulae }}"
-            casks_to_install: "{{ casks_to_install + devel_casks }}"
+            homebrew_formulae: "{{ homebrew_formulae + devel_formulae }}"
+            homebrew_casks: "{{ homebrew_casks + devel_casks }}"
           tags: devel
 
         - name: Add office formulae and casks
           ansible.builtin.set_fact:
-            formulae_to_install: "{{ formulae_to_install + office_formulae }}"
-            casks_to_install: "{{ casks_to_install + office_casks }}"
+            homebrew_formulae: "{{ homebrew_formulae + office_formulae }}"
+            homebrew_casks: "{{ homebrew_casks + office_casks }}"
           tags: office
 
         - name: Add security formulae and casks
           ansible.builtin.set_fact:
-            formulae_to_install: "{{ formulae_to_install + security_formulae }}"
-            casks_to_install: "{{ casks_to_install + security_casks }}"
+            homebrew_formulae: "{{ homebrew_formulae + security_formulae }}"
+            homebrew_casks: "{{ homebrew_casks + security_casks }}"
           tags: security
 
         - name: Add virtualization formulae and casks
           ansible.builtin.set_fact:
-            formulae_to_install: "{{ formulae_to_install + v12n_formulae }}"
-            casks_to_install: "{{ casks_to_install + v12n_casks }}"
+            homebrew_formulae: "{{ homebrew_formulae + v12n_formulae }}"
+            homebrew_casks: "{{ homebrew_casks + v12n_casks }}"
           tags: v12n
 
         - name: Add navigation formulae and casks
           ansible.builtin.set_fact:
-            formulae_to_install: "{{ formulae_to_install + navi_formulae }}"
-            casks_to_install: "{{ casks_to_install + navi_casks }}"
+            homebrew_formulae: "{{ homebrew_formulae + navi_formulae }}"
+            homebrew_casks: "{{ homebrew_casks + navi_casks }}"
           tags: navigation
 
   roles:
@@ -56,22 +50,9 @@
       tags: always
 
     - role: homebrew
-      vars:
-        homebrew_formulae: "{{ formulae_to_install }}"
-        homebrew_casks: "{{ casks_to_install }}"
       tags: always
 
     - role: git_repositories
-      vars:
-        git_repositories_repos:
-          - repository: "{{ omz_repository }}"
-            destination: "{{ omz_directory }}"
-            update: false
-            version: "master"
-          - repository: "{{ p10k_repository }}"
-            destination: "{{ p10k_directory }}"
-            update: false
-            version: "master"
       tags: always
 
     - role: macos_config

@@ -8,14 +8,14 @@ homebrew_fonts:
   - font-meslo-lg-nerd-font
 
 # Base packages. Always installed
-base_formulae:
+homebrew_formulae:
   - bat
   - coreutils
   - htop
   - topgrade
-base_casks: []
+homebrew_casks: []
 
-# Optional packages
+# Optional homebrew packages
 devel_formulae:
   - ansible
   - ansible-lint
@@ -66,49 +66,51 @@ mas_installed_apps:
   - {id: 1451685025, name: "WireGuard"}
   - {id: 1497506650, name: "Yubico Authenticator"}
 
-# Oh my ZSH
-omz_repository: "https://github.com/ohmyzsh/ohmyzsh.git"
-omz_directory: "~/.oh-my-zsh"
+# Oh my ZSH plugins set in zshrc.j2
 omz_plugins:
   - dash
   - git
   - golang
   - sudo
 
-# Powerlevel 10k theme
-p10k_repository: "https://gitee.com/romkatv/powerlevel10k.git"
-p10k_directory: "{{ omz_directory }}/custom/themes/powerlevel10k"
+# git repositories
+git_repositories_repos:
+  - repository: "https://github.com/ohmyzsh/ohmyzsh.git"
+    destination: "~/.oh-my-zsh"
+    update: false
+    version: "master"
+
+  - repository: "https://gitee.com/romkatv/powerlevel10k.git"
+    destination: "~/.oh-my-zsh/custom/themes/powerlevel10k"
+    update: false
+    version: "master"
 
 # Templates
 macos_config_templates:
   - source: "zshrc.j2"
     destination: "~/.zshrc"
     backup: true
-    mode: "0640"
+
   - source: "zprofile.j2"
     destination: "~/.zprofile"
     backup: true
-    mode: "0640"
+
   - source: "gitconfig.j2"
     destination: "~/.gitconfig"
     backup: true
-    mode: "0640"
+
   - source: "gitignore.j2"
     destination: "~/.gitignore"
-    backup: false
-    mode: "0640"
+
   - source: "vimrc.j2"
     destination: "~/.vimrc"
-    backup: false
-    mode: "0640"
 
 # Files to copy
 macos_config_files:
   - source: "files/kitty.conf"
     destination: "~/.config/kitty/"
     backup: true
-    mode: "0640"
+
   - source: "files/p10k.zsh"
     destination: "~/.p10k.zsh"
     backup: true
-    mode: "0640"

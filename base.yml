@@ -18,3 +18,14 @@
           - htop
         homebrew_casks:
           - fork
+    - role: git_repositories
+      vars:
+        git_repositories:
+          - repository: "https://github.com/ohmyzsh/ohmyzsh.git"
+            destination: "~/.oh-my-zsh"
+            update: false
+            version: "master"
+          - repository: "https://gitee.com/romkatv/powerlevel10k.git"
+            destination: "~/.oh-my-zsh/custom/themes/powerlevel10k"
+            update: false
+            version: "master"

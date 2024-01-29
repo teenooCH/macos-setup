@@ -57,8 +57,6 @@
 
     - role: homebrew
       vars:
-        homebrew_taps: "{{ brew_taps }}"
-        homebrew_fonts: "{{ brew_fonts }}"
         homebrew_formulae: "{{ formulae_to_install }}"
         homebrew_casks: "{{ casks_to_install }}"
       tags: always

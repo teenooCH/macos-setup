@@ -1,10 +1,10 @@
 ---
 # Brew taps
-brew_taps:
+homebrew_taps:
   - homebrew/cask-fonts
 
 # Brew fonts
-brew_fonts:
+homebrew_fonts:
   - font-meslo-lg-nerd-font
 
 # Base packages. Always installed

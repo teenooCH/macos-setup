@@ -20,7 +20,7 @@
           - fork
     - role: git_repositories
       vars:
-        git_repositories:
+        git_repositories_repos:
           - repository: "https://github.com/ohmyzsh/ohmyzsh.git"
             destination: "~/.oh-my-zsh"
             update: false

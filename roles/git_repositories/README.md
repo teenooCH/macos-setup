@@ -11,7 +11,7 @@ Git.
 Role Variables
 --------------
 
-git_repositories
+repositories
 - repository: git, SSH, or HTTP(S) protocol address of the git repository.
 - destination: The path of where the repository should be checked out.
 - depth: Default = 1. If set to 0 the complete repo is cloned.
@@ -32,7 +32,7 @@ Example Playbook
       roles:
         - role: git_repositories
           vars:
-            git_repositories:
+            repositories:
               - repository: "https://github.com/foo/bar.git"
                 destination: "~/.foobar"
               - repository: "https://github.com/foo/baz.git"

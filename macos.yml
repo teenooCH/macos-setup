@@ -52,7 +52,7 @@
           tags: navigation
 
   roles:
-    - name: macos_components
+    - role: macos_components
       tags: always
     - role: homebrew
       vars:
@@ -63,7 +63,7 @@
       tags: always
     - role: git_repositories
       vars:
-        git_repositories:
+        git_repositories_repos:
           - repository: "{{ omz_repository }}"
             destination: "{{ omz_directory }}"
             update: false

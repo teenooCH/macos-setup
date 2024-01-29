@@ -8,4 +8,4 @@
     version: "{{ item.version | default(omit) }}"
     remote: "{{ item.remote | default(omit) }}"
     ssh_opts: "{{ item.ssh_options | default(omit) }}"
-  with_items: "{{ git_repositories }}"
+  with_items: "{{ git_repositories_repos }}"

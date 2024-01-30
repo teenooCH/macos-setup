@@ -1,9 +1,7 @@
 ---
-# Brew taps
 homebrew_taps:
   - homebrew/cask-fonts
 
-# Brew fonts
 homebrew_fonts:
   - font-meslo-lg-nerd-font
 
@@ -74,7 +72,6 @@ omz_plugins:
   - golang
   - sudo
 
-# git repositories
 git_repositories_repos:
   - repository: "https://github.com/ohmyzsh/ohmyzsh.git"
     destination: "~/.oh-my-zsh"
@@ -86,7 +83,6 @@ git_repositories_repos:
     update: false
     version: "master"
 
-# Templates
 macos_config_templates:
   - source: "zshrc.j2"
     destination: "~/.zshrc"

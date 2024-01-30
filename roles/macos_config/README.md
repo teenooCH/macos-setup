@@ -13,16 +13,31 @@ None.
 Role Variables
 --------------
 
-- macos_config_templates
-  - source: Local path to a file to copy to the remote server.
-  - destination: Remote absolute path where the file should be copied to.
-  - backup: Default = false.
-  - mode: Default = 0640.
-- macos_config_files
-    - source: Local path to a file to copy to the remote server.
-    - destination: Remote absolute path where the file should be copied to.
-    - backup: Default = false.
-    - mode: Default = 0640.
+    - macos_config_templates
+      - source:  
+        Local path to a file to copy to the remote server.
+
+      - destination:  
+        Remote absolute path where the file should be copied to.
+
+      - backup:  
+        Default = false.
+
+      - mode:  
+        Default = 0640.
+
+    - macos_config_files
+      - source:  
+        Local path to a file to copy to the remote server.
+
+      - destination:  
+        Remote absolute path where the file should be copied to.
+
+      - backup:  
+        Default = false.
+
+      - mode:  
+        Default = 0640.
 
 Dependencies
 ------------

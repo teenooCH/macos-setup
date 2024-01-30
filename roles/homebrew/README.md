@@ -16,12 +16,16 @@ Role Variables
 
     - homebrew_upgrade_packages  
       Upgrade all installed packages. Default is false.
+
     - homebrew_taps
       List of all taps to be installed/removed.
+
     - homebrew_fonts
       List of all fonts to be installed/removed.
+
     - homebrew_formulae
       List of all formulae to be installed/removed.
+
     - homebrew_casks
       List of all casks to be installed/removed.
 

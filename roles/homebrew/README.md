@@ -14,6 +14,9 @@ None.
 Role Variables
 --------------
 
+    - homebrew_update_packages  
+      Update all repositories. Default is true.
+
     - homebrew_upgrade_packages  
       Upgrade all installed packages. Default is false.
 

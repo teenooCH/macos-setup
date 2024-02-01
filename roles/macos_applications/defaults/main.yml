@@ -1,4 +1,2 @@
 ---
 macos_applications_mas_binary: "{{ homebrew_binary_path }}/mas"
-
-macos_applications_apps: []

@@ -3,46 +3,51 @@
   hosts: all
 
   roles:
-    - macos_components
-    - role: homebrew
+    - role: macos_applications
       vars:
-        homebrew_upgrade_packages: true
-        homebrew_taps:
-          - homebrew/cask-fonts
-        homebrew_fonts:
-          - font-meslo-lg-nerd-font
-        homebrew_formulae:
-          - bat
-          - name: coreutils
-            state: absent
-          - htop
-        homebrew_casks:
-          - fork
-    - role: git_repositories
-      vars:
-        git_repositories_repos:
-          - repository: "https://github.com/ohmyzsh/ohmyzsh.git"
-            destination: "~/.oh-my-zsh"
-            update: false
-            version: "master"
-          - repository: "https://gitee.com/romkatv/powerlevel10k.git"
-            destination: "~/.oh-my-zsh/custom/themes/powerlevel10k"
-            update: false
-            version: "master"
-    - role: macos_config
-      vars:
-        macos_config_templates:
-          - source: "gitconfig.j2"
-            destination: "~/.gitconfig"
-            backup: true
-          - source: "gitignore.j2"
-            destination: "~/.gitignore"
-          - source: "vimrc.j2"
-            destination: "~/.vimrc"
-        macos_config_files:
-          - source: "files/kitty.conf"
-            destination: "~/.config/kitty/"
-            backup: true
-          - source: "files/p10k.zsh"
-            destination: "~/.p10k.zsh"
-            backup: true
+        macos_applications_apps:
+          - name: "Save to pocket"
+            id: 1477385213
+#    - macos_components
+#    - role: homebrew
+#      vars:
+#        homebrew_upgrade_packages: true
+#        homebrew_taps:
+#          - homebrew/cask-fonts
+#        homebrew_fonts:
+#          - font-meslo-lg-nerd-font
+#        homebrew_formulae:
+#          - bat
+#          - name: coreutils
+#            state: absent
+#          - htop
+#        homebrew_casks:
+#          - fork
+#    - role: git_repositories
+#      vars:
+#        git_repositories_repos:
+#          - repository: "https://github.com/ohmyzsh/ohmyzsh.git"
+#            destination: "~/.oh-my-zsh"
+#            update: false
+#            version: "master"
+#          - repository: "https://gitee.com/romkatv/powerlevel10k.git"
+#            destination: "~/.oh-my-zsh/custom/themes/powerlevel10k"
+#            update: false
+#            version: "master"
+#    - role: macos_config
+#      vars:
+#        macos_config_templates:
+#          - source: "gitconfig.j2"
+#            destination: "~/.gitconfig"
+#            backup: true
+#          - source: "gitignore.j2"
+#            destination: "~/.gitignore"
+#          - source: "vimrc.j2"
+#            destination: "~/.vimrc"
+#        macos_config_files:
+#          - source: "files/kitty.conf"
+#            destination: "~/.config/kitty/"
+#            backup: true
+#          - source: "files/p10k.zsh"
+#            destination: "~/.p10k.zsh"
+#            backup: true

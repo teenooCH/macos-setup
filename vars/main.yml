@@ -1,17 +1,17 @@
 ---
-homebrew_taps:
+brew_taps:
   - homebrew/cask-fonts
 
-homebrew_fonts:
+brew_fonts:
   - font-meslo-lg-nerd-font
 
 # Base packages. Always installed
-homebrew_formulae:
+brew_formulae:
   - bat
   - coreutils
   - htop
   - topgrade
-homebrew_casks: []
+brew_casks: []
 
 # Optional homebrew packages
 devel_formulae:
@@ -57,7 +57,7 @@ navi_casks:
   - garmin-express
   - garmin-basecamp
 
-mas_installed_apps:
+apps:
   - {id: 1091189122, name: "Bear"}
   - {id: 1055511498, name: "Day One"}
   - {id: 634892482, name: "MoneyControl"}
@@ -72,7 +72,7 @@ omz_plugins:
   - golang
   - sudo
 
-git_repositories_repos:
+git_repos:
   - repository: "https://github.com/ohmyzsh/ohmyzsh.git"
     destination: "~/.oh-my-zsh"
     update: false
@@ -83,7 +83,7 @@ git_repositories_repos:
     update: false
     version: "master"
 
-macos_config_templates:
+config_templates:
   - source: "zshrc.j2"
     destination: "~/.zshrc"
     backup: true
@@ -103,7 +103,7 @@ macos_config_templates:
     destination: "~/.vimrc"
 
 # Files to copy
-macos_config_files:
+config_files:
   - source: "files/kitty.conf"
     destination: "~/.config/kitty/"
     backup: true

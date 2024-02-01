@@ -3,46 +3,39 @@
   hosts: all
   vars_files:
     - vars/main.yml
-  vars:
-    brew_bin_path: "{{ '/opt/homebrew/bin' if ansible_facts['machine'] == 'arm64' else '/usr/local/Homebrew/bin' }}"
 
   pre_tasks:
     - name: Add optional brew formulae
       tags: never, full
       block:
-        - name: Add mas formulae
-          ansible.builtin.set_fact:
-            homebrew_formulae: "{{ homebrew_formulae + ['mas'] }}"
-          tags: mas
-
         - name: Add development formulae and casks
           ansible.builtin.set_fact:
-            homebrew_formulae: "{{ homebrew_formulae + devel_formulae }}"
-            homebrew_casks: "{{ homebrew_casks + devel_casks }}"
+            brew_formulae: "{{ brew_formulae + devel_formulae }}"
+            brew_casks: "{{ brew_casks + devel_casks }}"
           tags: devel
 
         - name: Add office formulae and casks
           ansible.builtin.set_fact:
-            homebrew_formulae: "{{ homebrew_formulae + office_formulae }}"
-            homebrew_casks: "{{ homebrew_casks + office_casks }}"
+            brew_formulae: "{{ brew_formulae + office_formulae }}"
+            brew_casks: "{{ brew_casks + office_casks }}"
           tags: office
 
         - name: Add security formulae and casks
           ansible.builtin.set_fact:
-            homebrew_formulae: "{{ homebrew_formulae + security_formulae }}"
-            homebrew_casks: "{{ homebrew_casks + security_casks }}"
+            brew_formulae: "{{ brew_formulae + security_formulae }}"
+            brew_casks: "{{ brew_casks + security_casks }}"
           tags: security
 
         - name: Add virtualization formulae and casks
           ansible.builtin.set_fact:
-            homebrew_formulae: "{{ homebrew_formulae + v12n_formulae }}"
-            homebrew_casks: "{{ homebrew_casks + v12n_casks }}"
+            brew_formulae: "{{ brew_formulae + v12n_formulae }}"
+            brew_casks: "{{ brew_casks + v12n_casks }}"
           tags: v12n
 
         - name: Add navigation formulae and casks
           ansible.builtin.set_fact:
-            homebrew_formulae: "{{ homebrew_formulae + navi_formulae }}"
-            homebrew_casks: "{{ homebrew_casks + navi_casks }}"
+            brew_formulae: "{{ brew_formulae + navi_formulae }}"
+            brew_casks: "{{ brew_casks + navi_casks }}"
           tags: navigation
 
   roles:
@@ -50,28 +43,25 @@
       tags: always
 
     - role: homebrew
+      vars:
+        homebrew_taps: "{{ brew_taps }}"
+        homebrew_fonts: "{{ brew_fonts }}"
+        homebrew_formulae: "{{ brew_formulae }}"
+        homebrew_casks: "{{ brew_casks }}"
       tags: always
 
+    - role: macos_applications
+      vars:
+        macos_applications_apps: "{{ apps }}"
+      tags: mas, never, full
+
     - role: git_repositories
+      vars:
+        git_repositories_repos: "{{ git_repos }}"
       tags: always
 
     - role: macos_config
+      vars:
+        macos_config_templates: "{{ config_templates }}"
+        macos_config_files: "{{ config_files }}"
       tags: always
-
-  tasks:
-    - name: Get list of all installed MAS Apps
-      ansible.builtin.command:
-        cmd: "{{ brew_bin_path }}/mas list"
-      register: installed_apps
-      check_mode: false
-      changed_when: false
-      tags: mas, never, full
-
-    - name: Ensure MAS apps are present
-      ansible.builtin.command:
-        cmd: "{{ brew_bin_path }}/mas install {{ item.id | default(item) }}"
-      register: mas_result
-      with_items: "{{ mas_installed_apps }}"
-      when: (item.id | default(item) | string) not in installed_apps.stdout
-      changed_when: "mas_result.rc == 0"
-      tags: mas, never, full

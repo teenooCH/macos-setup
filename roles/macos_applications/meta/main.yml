@@ -1,0 +1,5 @@
+dependencies:
+  - role: homebrew
+    vars:
+      homebrew_update_packages: false
+      homebrew_formulae: mas

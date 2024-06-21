@@ -8,6 +8,7 @@
         macos_applications_apps:
           - name: "Save to pocket"
             id: 1477385213
+            state: absent
 #    - macos_components
 #    - role: homebrew
 #      vars:

@@ -1,6 +1,5 @@
 ---
-brew_taps:
-  - homebrew/cask-fonts
+brew_taps: []
 
 brew_fonts:
   - font-meslo-lg-nerd-font
@@ -17,7 +16,6 @@ brew_casks: []
 devel_formulae:
   - ansible
   - ansible-lint
-  - cowsay
   - git
   - glow
   - go

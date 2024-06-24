@@ -3,45 +3,41 @@
   hosts: all
   vars_files:
     - vars/main.yml
+  vars:
+    brew_packages: "{{ base_packages }}"
 
   pre_tasks:
-    - name: Add optional brew formulae
+    - name: Add optional brew packages
       tags: never, full
       block:
-        - name: Add development formulae and casks
+        - name: Add development packages
           ansible.builtin.set_fact:
-            brew_formulae: "{{ brew_formulae + devel_formulae }}"
-            brew_casks: "{{ brew_casks + devel_casks }}"
+            brew_packages: "{{ brew_packages + devel_packages }}"
           tags: devel
 
-        - name: Add office formulae and casks
+        - name: Add office packages
           ansible.builtin.set_fact:
-            brew_formulae: "{{ brew_formulae + office_formulae }}"
-            brew_casks: "{{ brew_casks + office_casks }}"
+            brew_packages: "{{ brew_packages + office_packages }}"
           tags: office
 
-        - name: Add security formulae and casks
+        - name: Add security packages
           ansible.builtin.set_fact:
-            brew_formulae: "{{ brew_formulae + security_formulae }}"
-            brew_casks: "{{ brew_casks + security_casks }}"
+            brew_packages: "{{ brew_packages + security_packages }}"
           tags: security
 
-        - name: Add virtualization formulae and casks
+        - name: Add virtualization packages
           ansible.builtin.set_fact:
-            brew_formulae: "{{ brew_formulae + v12n_formulae }}"
-            brew_casks: "{{ brew_casks + v12n_casks }}"
+            brew_packages: "{{ brew_packages + v12n_packages }}"
           tags: v12n
 
-        - name: Add navigation formulae and casks
+        - name: Add navigation packages
           ansible.builtin.set_fact:
-            brew_formulae: "{{ brew_formulae + navi_formulae }}"
-            brew_casks: "{{ brew_casks + navi_casks }}"
+            brew_packages: "{{ brew_packages + navi_packages }}"
           tags: navigation
 
-        - name: Add maker formulae and casks
+        - name: Add maker packages
           ansible.builtin.set_fact:
-            brew_formulae: "{{ brew_formulae + maker_formulae }}"
-            brew_casks: "{{ brew_casks + maker_casks }}"
+            brew_packages: "{{ brew_packages + maker_packages }}"
           tags: maker
 
   roles:
@@ -52,8 +48,7 @@
       vars:
         homebrew_taps: "{{ brew_taps }}"
         homebrew_fonts: "{{ brew_fonts }}"
-        homebrew_formulae: "{{ brew_formulae }}"
-        homebrew_casks: "{{ brew_casks }}"
+        homebrew_packages: "{{ brew_packages }}"
       tags: always
 
     - role: macos_applications

@@ -3,5 +3,5 @@ homebrew_upgrade_packages: false
 homebrew_update_packages: true
 homebrew_taps: []
 homebrew_fonts: []
-homebrew_formulae: []
+homebrew_packages: []
 homebrew_casks: []

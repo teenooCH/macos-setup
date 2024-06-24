@@ -35,17 +35,9 @@
     options: "{{ item.options | default(omit) }}"
   with_items: "{{ homebrew_fonts }}"
 
-- name: Ensure Homebrew Formulae are present/absent
+- name: Ensure Homebrew packages are present/absent
   community.general.homebrew:
     name: "{{ item.name | default(item) }}"
     state: "{{ item.state | default('present') }}"
     options: "{{ item.options | default(omit) }}"
-  with_items: "{{ homebrew_formulae }}"
-
-- name: Ensure Homebrew Casks are present/absent
-  community.general.homebrew_cask:
-    name: "{{ item.name | default(item) }}"
-    state: "{{ item.state | default('present') }}"
-    options: "{{ item.options | default(omit) }}"
-    accept_external_apps: true
-  with_items: "{{ homebrew_casks }}"
+  with_items: "{{ homebrew_packages }}"

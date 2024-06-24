@@ -2,4 +2,4 @@ dependencies:
   - role: homebrew
     vars:
       homebrew_update_packages: false
-      homebrew_formulae: mas
+      homebrew_packages: mas

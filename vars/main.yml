@@ -4,59 +4,52 @@ brew_taps: []
 brew_fonts:
   - font-meslo-lg-nerd-font
 
-# Base packages. Always installed
-brew_formulae:
+# Base homebrew packages. Always installed
+base_packages:
   - bat
   - coreutils
   - htop
   - topgrade
-brew_casks: []
 
 # Optional homebrew packages
-devel_formulae:
+devel_packages:
   - ansible
   - ansible-lint
-  - git
-  - glow
-  - go
-  - golangci-lint
-  - qrencode
-devel_casks:
   - commander-one
   - cyberduck
   - dash
   - fork
+  - git
+  - glow
+  - go
+  - golangci-lint
   - goland
   - grandperspective
+  - qrencode
   - kitty
   - warp
 
-office_formulae: []
-office_casks:
+office_packages:
   - battery
   - brave-browser
   - signal
   - telegram
 
-security_formulae: []
-security_casks:
+security_packages:
   - enpass
   - knockknock
   - lulu
 
-v12n_formulae:
+v12n_packages:
   - kubernetes-cli
-v12n_casks:
-  - vmware-fusion
   - utm
+  - vmware-fusion
 
-navi_formulae: []
-navi_casks:
+navi_packages:
   - garmin-express
   - garmin-basecamp
 
-maker_formulae: []
-maker_casks:
+maker_packages:
   - bambu-studio
 
 apps:

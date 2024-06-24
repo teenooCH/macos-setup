@@ -26,11 +26,8 @@ Role Variables
     - homebrew_fonts
       List of all fonts to be installed/removed.
 
-    - homebrew_formulae
-      List of all formulae to be installed/removed.
-
-    - homebrew_casks
-      List of all casks to be installed/removed.
+    - homebrew_packages
+      List of all packages to be installed/removed.
 
 Dependencies
 ------------
@@ -49,13 +46,11 @@ Example Playbook
               - homebrew/cask-fonts
             homebrew_fonts:
               - font-meslo-lg-nerd-font
-            homebrew_formulae:
+            homebrew_packages:
               - bat
               - name: coreutils
                 state: absent
               - htop
-            homebrew_casks:
-              - fork
 
 License
 -------

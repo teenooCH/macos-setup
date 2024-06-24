@@ -55,6 +55,10 @@ navi_casks:
   - garmin-express
   - garmin-basecamp
 
+maker_formulae: []
+maker_casks:
+  - bambu-studio
+
 apps:
   - {id: 1091189122, name: "Bear"}
   - {id: 1055511498, name: "Day One"}

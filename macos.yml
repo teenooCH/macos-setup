@@ -38,6 +38,12 @@
             brew_casks: "{{ brew_casks + navi_casks }}"
           tags: navigation
 
+        - name: Add maker formulae and casks
+          ansible.builtin.set_fact:
+            brew_formulae: "{{ brew_formulae + maker_formulae }}"
+            brew_casks: "{{ brew_casks + maker_casks }}"
+          tags: maker
+
   roles:
     - role: macos_components
       tags: always

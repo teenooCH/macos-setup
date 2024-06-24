@@ -32,6 +32,7 @@ Add more packages by selecting one or more of following tags
 | tag        | description               |
 |------------|---------------------------|
 | devel      | development packages      |
+| maker      | 3d printing stuff         |
 | mas        | Mac App Store packages    |
 | navigation | navigation packages       |
 | office     | office packages           |

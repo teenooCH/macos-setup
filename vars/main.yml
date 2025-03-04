@@ -32,6 +32,7 @@ devel_packages:
 office_packages:
   - battery
   - brave-browser
+  - libreoffice
   - telegram
 
 security_packages:

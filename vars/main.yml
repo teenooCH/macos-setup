@@ -32,7 +32,6 @@ devel_packages:
 office_packages:
   - battery
   - brave-browser
-  - signal
   - telegram
 
 security_packages:

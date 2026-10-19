@@ -13,8 +13,6 @@ base_packages:
 
 # Optional homebrew packages
 devel_packages:
-  - ansible
-  - ansible-lint
   - cyberduck
   - dash
   - fork

@@ -14,7 +14,7 @@ base_packages:
 # Optional homebrew packages
 devel_packages:
   - cyberduck
-  - dash
+  - homebrew/cask/dash
   - fork
   - git
   - glow

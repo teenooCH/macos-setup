@@ -1,0 +1,20 @@
+---
+- name: Report App Store Apps that would be installed
+  ansible.builtin.debug:
+    msg: "Would install App Store app {{ item.id | default(item) }}"
+  loop: "{{ macos_applications_installed }}"
+  when:
+    - >-
+      installed_apps.stdout_lines
+      | select('match', '^\\s*' ~ (item.id | default(item) | string) ~ '(\\s|$)')
+      | list | length == 0
+
+- name: Report App Store Apps that would be uninstalled
+  ansible.builtin.debug:
+    msg: "Would uninstall App Store app {{ item.id | default(item) }}"
+  loop: "{{ macos_applications_absent }}"
+  when:
+    - >-
+      installed_apps.stdout_lines
+      | select('match', '^\\s*' ~ (item.id | default(item) | string) ~ '(\\s|$)')
+      | list | length > 0

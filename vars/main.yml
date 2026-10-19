@@ -15,7 +15,6 @@ base_packages:
 devel_packages:
   - ansible
   - ansible-lint
-  - commander-one
   - cyberduck
   - dash
   - fork
@@ -23,10 +22,8 @@ devel_packages:
   - glow
   - go
   - golangci-lint
-  - goland
   - grandperspective
   - qrencode
-  - kitty
   - warp
 
 office_packages:
@@ -53,7 +50,6 @@ maker_packages:
   - bambu-studio
 
 apps:
-  - {id: 1091189122, name: "Bear"}
   - {id: 1055511498, name: "Day One"}
   - {id: 634892482, name: "MoneyControl"}
   - {id: 1507782672, name: "Pixea"}
@@ -99,10 +95,6 @@ config_templates:
 
 # Files to copy
 config_files:
-  - source: "files/kitty.conf"
-    destination: "~/.config/kitty/"
-    backup: true
-
   - source: "files/p10k.zsh"
     destination: "~/.p10k.zsh"
     backup: true

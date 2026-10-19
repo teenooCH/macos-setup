@@ -10,7 +10,7 @@
   ansible.builtin.command:
     cmd: "{{ macos_applications_mas_binary }} install {{ item.id | default(item) }}"
   register: mas_result
-  with_items: "{{ macos_applications_apps }}"
+  with_items: "{{ macos_applications_installed }}"
   when: >-
     installed_apps.stdout_lines
     | select('match', '^\\s*' ~ (item.id | default(item) | string) ~ '(\\s|$)')

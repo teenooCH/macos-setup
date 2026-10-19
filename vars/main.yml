@@ -48,14 +48,14 @@ maker_packages:
   - bambu-studio
 
 # Mac App Store Applications
-apps:
+apps_installed:
   - {id: 1055511498, name: "Day One"}
   - {id: 634892482, name: "MoneyControl"}
   - {id: 1507782672, name: "Pixea"}
   - {id: 1451685025, name: "WireGuard"}
   - {id: 1497506650, name: "Yubico Authenticator"}
 
-deinstalled_apps:
+apps_absent:
   - {id: 682658836, name: "GarageBand"}
   - {id: 409183694, name: "Keynote"}
   - {id: 409201541, name: "Pages"}

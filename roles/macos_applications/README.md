@@ -1,7 +1,9 @@
 macos_applications
 ==================
 
-Install Appstore Applications.
+Install or deinstal Appstore Applications.
+
+>An App must not appear in both lists at the same time.
 
 Requirements
 ------------
@@ -12,6 +14,7 @@ Role Variables
 --------------
 
 macos_applications_apps
+macos_applications_absent
 
 Dependencies
 ------------
@@ -21,8 +24,6 @@ homebrew
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: myMacBook
       roles:
          - role: macos_applications
@@ -31,8 +32,8 @@ Including an example of how to use your role (for instance, with variables passe
                - name: "foo bar"
                  id: 123456789
              macos_applications_absent:
-               - name: "foo bar"
-                 id: 123456789
+               - name: "foo baz"
+                 id: 0987654321
 
 License
 -------

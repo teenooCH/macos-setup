@@ -13,3 +13,11 @@
   with_items: "{{ macos_applications_apps }}"
   when: (item.id | default(item) | string) not in installed_apps.stdout
   changed_when: mas_result.rc == 0
+
+- name: Ensure App Store Apps are absent
+  ansible.builtin.command:
+    cmd: "{{ macos_applications_mas_binary }} uninstall {{ item.id | default(item) }}"
+  register: mas_uninstall_result
+  loop: "{{ macos_applications_absent }}"
+  when: (item.id | default(item) | string) in installed_apps.stdout
+  changed_when: mas_uninstall_result.rc == 0

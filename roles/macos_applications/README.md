@@ -30,6 +30,9 @@ Including an example of how to use your role (for instance, with variables passe
              macos_applications_apps:
                - name: "foo bar"
                  id: 123456789
+             macos_applications_absent:
+               - name: "foo bar"
+                 id: 123456789
 
 License
 -------

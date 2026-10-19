@@ -54,6 +54,7 @@
     - role: macos_applications
       vars:
         macos_applications_apps: "{{ apps }}"
+        macos_applications_absent: "{{ deinstalled_apps }}"
       tags: mas, never, full
 
     - role: git_repositories

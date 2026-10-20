@@ -11,7 +11,7 @@ Git.
 Role Variables
 --------------
 
-    - repositories
+    - git_repositories_repos
         - repository:  
           git, SSH, or HTTP(S) protocol address of the git repository.
     

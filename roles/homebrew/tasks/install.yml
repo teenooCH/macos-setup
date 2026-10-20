@@ -1,24 +1,34 @@
 ---
-- name: Temporarily disable the need for a sudo password
-  ansible.builtin.lineinfile:
-    path: /etc/sudoers
-    state: present
-    regexp: '^{{ ansible_user_id }} ALL='
-    line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL'
-    validate: visudo -cf %s
-  become: true
-
 - name: Install Homebrew
-  ansible.builtin.shell:
-    cmd: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL {{ homebrew_install_script }})"
-    creates: "{{ homebrew_binary_path }}/brew"
-  become: false
+  block:
+    - name: Temporarily disable the need for a sudo password
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^{{ ansible_user_id }} ALL='
+        line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL'
+        backup: true
+        validate: visudo -cf %s
+      register: sudoers_change
+      become: true
 
-- name: Re-enable the sudo password
-  ansible.builtin.lineinfile:
-    path: /etc/sudoers
-    state: present
-    regexp: '^{{ ansible_user_id }} ALL='
-    line: '{{ ansible_user_id }} ALL=(ALL) ALL'
-    validate: visudo -cf %s
-  become: true
+    - name: Run the Homebrew installer
+      ansible.builtin.shell:
+        cmd: NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL {{ homebrew_install_script }})"
+        creates: "{{ homebrew_binary_path }}/brew"
+      become: false
+
+  always:
+    - name: Restore the original sudoers file
+      ansible.builtin.copy:
+        src: "{{ sudoers_change.backup_file }}"
+        dest: /etc/sudoers
+        remote_src: true
+        owner: root
+        group: wheel
+        mode: "0440"
+        validate: visudo -cf %s
+      when:
+        - sudoers_change is defined
+        - sudoers_change.backup_file is defined
+      become: true

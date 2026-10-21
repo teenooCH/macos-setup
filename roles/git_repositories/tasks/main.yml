@@ -4,7 +4,7 @@
     repo: "{{ item.repository }}"
     dest: "{{ item.destination }}"
     depth: "{{ item.depth | default('1') }}"
-    update: "{{ item.update | default(omit) | bool}}"
+    update: "{{ item.update | default(true) | bool }}"
     version: "{{ item.version | default(omit) }}"
     remote: "{{ item.remote | default(omit) }}"
     ssh_opts: "{{ item.ssh_options | default(omit) }}"

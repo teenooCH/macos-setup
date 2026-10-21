@@ -1,15 +1,30 @@
 ---
-- name: Get list of all installed Appstore Apps
+- name: Check whether mas is installed
+  ansible.builtin.stat:
+    path: "{{ macos_applications_mas_binary }}"
+  register: mas_binary
+
+- name: Get list of all installed App Store apps
   ansible.builtin.command:
     cmd: "{{ macos_applications_mas_binary }} list"
   register: installed_apps
   check_mode: false
   changed_when: false
+  when: mas_binary.stat.exists
+
+- name: Report that App Store management is skipped
+  ansible.builtin.debug:
+    msg: "Skipping App Store management because mas is not installed."
+  when: not mas_binary.stat.exists
 
 - name: Report App Store changes
   ansible.builtin.include_tasks: report.yml
-  when: ansible_check_mode
+  when:
+    - mas_binary.stat.exists
+    - ansible_check_mode
 
 - name: Apply App Store changes
   ansible.builtin.include_tasks: apply.yml
-  when: not ansible_check_mode
+  when:
+    - mas_binary.stat.exists
+    - not ansible_check_mode

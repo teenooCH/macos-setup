@@ -13,7 +13,7 @@ mas application. A CLI for the Appstore.
 Role Variables
 --------------
 
-macos_applications_apps
+macos_applications_installed
 macos_applications_absent
 
 Dependencies
@@ -28,7 +28,7 @@ Example Playbook
       roles:
          - role: macos_applications
            vars:
-             macos_applications_apps:
+             macos_applications_installed
                - name: "foo bar"
                  id: 123456789
              macos_applications_absent:
